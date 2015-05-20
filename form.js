@@ -2,7 +2,15 @@
   String.prototype.splice = function(idx, s) {
     return (this.slice(0, idx) + s + this.slice(idx));
   };
-  function isFirst(){}
+  function isFirst(msg,scrap_num){
+    for (var i = scrap_num; '|' != msg[i]; i++) {
+      if( msg[i] != ' '  ){
+        return false;
+      }
+
+    }
+    return true;
+  }
   function space_pipe(scrap,class_num){
     var count = 0;
     for (var i = 0; i < scrap.length; i++) {
@@ -36,9 +44,11 @@
     var msg = document.getElementsByName('msg')[0].value;
 
     if (reg[date].exec(msg)) {
-      alert(msg.slice(reg[date].lastIndex));
-      scrap = reg[date].lastIndex + space_pipe(msg.slice(reg[date].lastIndex),class_num);
-      document.getElementsByName('msg')[0].value = msg.splice(scrap,name);
+      scrap_num = reg[date].lastIndex + space_pipe(msg.slice(reg[date].lastIndex),class_num);
+      if(!isFirst(msg,scrap_num)){
+          name += ',';
+      }
+      document.getElementsByName('msg')[0].value = msg.splice(scrap_num,name);
     }
   }
 
