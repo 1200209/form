@@ -1,3 +1,21 @@
+function start() {
+  var name = document.getElementById('namae').value;
+  var schedule = [];
+  var date;
+  var class_num;
+  for (var i = 0; i < 35; i++) {
+    schedule[i] = document.getElementById(i.toString());
+    if (schedule[i].checked) {
+
+      date = Math.floor(Number(schedule[i].value) / 7);
+      class_num = Number(schedule[i].value) % 7;
+      insert(name, date, class_num);
+    }
+
+  }
+
+}
+
 var target = document.createElement("div");
 var newtxt = document.createTextNode("日程削除フォーム");
 var body = document.getElementById('body');
